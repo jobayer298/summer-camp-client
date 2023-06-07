@@ -58,7 +58,7 @@ const NavBar = () => {
               </ul>
             </div>
             <Link>
-              <img className='w-[200px]' src={logo} alt="" />
+              <img className="w-[200px]" src={logo} alt="" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -76,14 +76,19 @@ const NavBar = () => {
                     alt=""
                   />
                 )}
-                <button onClick={handleLogout} className="btn btn-sm">
+                <button
+                  onClick={handleLogout}
+                  className="btn bg-[#e2554a] text-white border-0  btn-secondary btn-sm"
+                >
                   Logout
                 </button>
               </div>
             ) : (
               <>
                 <Link to="/login">
-                  <button className="btn btn-sm">Login</button>
+                  <button className="btn bg-[#e2554a] text-white border-0  btn-secondary btn-sm">
+                    Login
+                  </button>
                 </Link>
               </>
             )}
