@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import logo from '../../../assets/logo.webp'
 
 const NavBar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -56,7 +57,9 @@ const NavBar = () => {
                 {menu}
               </ul>
             </div>
-            <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+            <Link>
+              <img className='w-[200px]' src={logo} alt="" />
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal font-medium text-[17px] px-1">
