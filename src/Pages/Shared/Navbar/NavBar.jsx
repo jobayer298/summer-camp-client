@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const NavBar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () =>{
+    logout()
+    .then(() =>{Swal.fire("Logout successful", "success");}).catch(err =>{
+      console.log(err.message);
+    })
+  }
+  console.log(user);
     const menu = (
       <>
         <li>
@@ -54,7 +64,26 @@ const NavBar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link to="/login"><button className='btn btn-sm'>Login</button></Link>
+            {user ? (
+              <div className="flex gap-2 items-center">
+                {user && (
+                  <img
+                    className="w-11 h-11 rounded-full"
+                    src={user.photoURL}
+                    alt=""
+                  />
+                )}
+                <button onClick={handleLogout} className="btn btn-sm">
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="btn btn-sm">Login</button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
