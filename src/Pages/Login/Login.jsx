@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import img from '../../assets/login.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+   const { login } = useContext(AuthContext);
+  const onSubmit = (data) => {
+    console.log(data);
+    login(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire("login successful", "success");
+        navigate(from, {replace: true})
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
     return (
       <div className="hero py-9 ">
         <div className="hero-content grid grid-cols-1 md:grid-cols-2">
