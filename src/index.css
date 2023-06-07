@@ -6,3 +6,10 @@
 .primary-btn{
     @apply btn bg-[#e2554a] text-white border-0  btn-secondary;
 }
+
+.active{
+    @apply text-black font-bold
+}
+.drawer-side a{
+    background: transparent;
+}
