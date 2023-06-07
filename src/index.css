@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-btn{
+    @apply btn bg-[#e2554a] text-white border-0  btn-secondary;
+}

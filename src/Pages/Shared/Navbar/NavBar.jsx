@@ -86,9 +86,7 @@ const NavBar = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <button className="btn bg-[#e2554a] text-white border-0  btn-secondary btn-sm">
-                    Login
-                  </button>
+                  <button className="btn bg-[#e2554a] text-white border-0 mt-3 btn-secondary btn-sm">Login</button>
                 </Link>
               </>
             )}

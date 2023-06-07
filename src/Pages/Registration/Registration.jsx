@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { saveUser } from "../../api/auth";
 
 const Registration = () => {
   const {
@@ -18,6 +19,7 @@ const Registration = () => {
     createUser(data.email, data.password)
     .then(result =>{
         console.log(result.user);
+        saveUser(result.user)
         updateUserProfile(data.name, data.url)
           .then(() => {
             Swal.fire("Registration successful", "success");

@@ -26,7 +26,7 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div class="banner-overlay absolute w-full h-full inset-0 bg-black bg-opacity-30"></div>
+          <div className="banner-overlay absolute w-full h-full inset-0 bg-black bg-opacity-30"></div>
           <img src={img1} alt="" />
           <div className="font-bold text-center w-full absolute top-[30%]">
             <div>
@@ -37,7 +37,7 @@ const Banner = () => {
                 A chance to provide <br /> formative experience
               </h1>
               <Link to="/register">
-                <button className="btn bg-[#e2554a] text-white border-0 mt-3 btn-secondary">
+                <button className=" mt-3 primary-btn">
                   Registration for camp
                 </button>
               </Link>
@@ -45,7 +45,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div class="banner-overlay absolute w-full h-full inset-0 bg-black bg-opacity-30"></div>
+          <div className="banner-overlay absolute w-full h-full inset-0 bg-black bg-opacity-30"></div>
           <img src={img2} alt="" />
           <div className="font-bold text-center w-full absolute top-[30%]">
             <div>
@@ -56,7 +56,7 @@ const Banner = () => {
                 A chance to provide <br /> formative experience
               </h1>
               <Link to="/register">
-                <button className="btn bg-[#e2554a] text-white border-0 mt-3 btn-secondary">
+                <button className="mt-3 primary-btn">
                   Registration for camp
                 </button>
               </Link>

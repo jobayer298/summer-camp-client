@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { saveUser } from '../../api/auth';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Login = () => {
   const handleGoogleSignIn = () =>{
     googleSignIn().then(result =>{
       console.log(result.user);
+      saveUser(result.user);
       Swal.fire({
         position: "top-end",
         icon: "success",
