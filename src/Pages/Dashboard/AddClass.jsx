@@ -1,17 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { imageUpload } from "../../api/imageUpload";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
+  const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure()
+  //   console.log(user);
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const className = form.className.value;
-    const image = form.image.value
-    const instructorName = form.instructorName.value 
-    const instructorEmail = form.instructorEmail.value; 
-    const seat = parseInt(form.seat.value); 
-    const price = parseFloat(form.price.value); 
-    const data = {className, image, instructorEmail, instructorName, seat,  price}
-    console.log(data);
+    const image = form.image.files[0];
+    const instructorName = form.instructorName.value;
+    const instructorEmail = form.instructorEmail.value;
+    const seat = parseInt(form.seat.value);
+    const price = parseFloat(form.price.value);
+    // upload image
+    imageUpload(image).then((res) => {
+      const classData = {
+        className,
+        image: res.data.display_url,
+        instructorEmail,
+        instructorName,
+        seat,
+        price,
+        addedBy : {
+            name: user?.displayName,
+            email: user?.email 
+        }
+      };
+      axiosSecure.post("/classes", classData).then(data =>{
+        console.log(data.data)
+        if(data.data.insertedId){
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "added class successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+        }
+    })
+
+      console.log(classData);
+    });
   };
   return (
     <div>
@@ -48,6 +82,8 @@ const AddClass = () => {
             className="w-full px-4 py-3 text-gray-800 border  focus:outline-rose-500 rounded-md "
             name="instructorName"
             type="text"
+            defaultValue={user?.displayName}
+            disabled
             placeholder="Instructor name"
             required
           />
@@ -60,6 +96,8 @@ const AddClass = () => {
             className="w-full px-4 py-3 text-gray-800 border  focus:outline-rose-500 rounded-md "
             name="instructorEmail"
             type="email"
+            defaultValue={user?.email}
+            disabled
             placeholder="Instructor email"
             required
           />
