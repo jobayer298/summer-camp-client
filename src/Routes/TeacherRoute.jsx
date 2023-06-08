@@ -13,7 +13,7 @@ const TeacherRoute = ({ children }) => {
   }
 
   if (user && isTeacher) {
-    return children;
+    return children; 
   }
   return <Navigate to="/" state={{ from: location }} replace></Navigate>;
 };
