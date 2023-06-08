@@ -19,9 +19,10 @@ const Registration = () => {
     createUser(data.email, data.password)
     .then(result =>{
         console.log(result.user);
-        saveUser(result.user)
+        
         updateUserProfile(data.name, data.url)
           .then(() => {
+            saveUser(result.user);
             Swal.fire("Registration successful", "success");
           })
           .catch((err) => {
