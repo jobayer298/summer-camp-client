@@ -18,7 +18,7 @@ const Dashboard = () => {
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden absolute top-0 right-0"
           >
-            Open drawer
+            Open drawer 
           </label>
         </div>
         <div className="drawer-side">
