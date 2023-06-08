@@ -47,8 +47,11 @@ const Dashboard = () => {
             )}
             {isTeacher && (
               <>
-                <li className="mt-10">
-                  <NavLink to="/">Teacher Home</NavLink>
+                <li className="">
+                  <NavLink to="/dashboard/addClass">Add a class</NavLink>
+                </li>
+                <li className="">
+                  <NavLink to="/dashboard/myClass">My class</NavLink>
                 </li>
               </>
             )}
