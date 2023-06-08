@@ -9,6 +9,7 @@ const Dashboard = () => {
     console.log(user);
     const [isAdmin] = useAdmin()
     const [isTeacher] = useTeacher()
+    
     return (
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -41,7 +42,10 @@ const Dashboard = () => {
                   <NavLink to="/">Admin Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/allUsers">All Users</NavLink>
+                  <NavLink to="/dashboard/allUsers">Manage Users</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manageClasses">Manage classes</NavLink>
                 </li>
               </>
             )}

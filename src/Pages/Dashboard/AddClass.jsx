@@ -26,10 +26,8 @@ const AddClass = () => {
         instructorName,
         seat,
         price,
-        addedBy : {
-            name: user?.displayName,
-            email: user?.email 
-        }
+        status: "pending",
+        totalEnrolled: 0
       };
       axiosSecure.post("/classes", classData).then(data =>{
         console.log(data.data)
