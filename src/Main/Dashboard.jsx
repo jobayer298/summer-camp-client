@@ -28,7 +28,7 @@ const Dashboard = () => {
             <div className="text-center">
               <img
                 className="w-52 h-52 rounded-full"
-                src={user.photoURL}
+                src={user.photoURL} 
                 alt=""
               />
               <p className="font-medium text-[17px] my-3">{user.displayName}</p>
