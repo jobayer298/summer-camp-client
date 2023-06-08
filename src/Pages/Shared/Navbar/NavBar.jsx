@@ -12,7 +12,7 @@ const NavBar = () => {
       console.log(err.message);
     })
   }
-  console.log(user);
+  // console.log(user);
     const menu = (
       <>
         <li>

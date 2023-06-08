@@ -85,7 +85,9 @@ const ManageClasses = () => {
                   <td className="grid gap-1">
                     <>
                       {c.status === "approved" ? (
-                        "approved"
+                        <button className="btn btn-success btn-xs">
+                          Approved
+                        </button>
                       ) : (
                         <button
                           onClick={() => makeApproved(c._id)}

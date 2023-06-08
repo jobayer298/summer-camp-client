@@ -21,7 +21,7 @@ const AllUsers = () => {
       
   });
 
-  // if (isLoading) return "Loading...";
+  if (isLoading) return "Loading...";
   const makeAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PATCH",
