@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import useAdmin from '../hooks/useAdmin';
+import useTeacher from '../hooks/useTeacher';
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
     console.log(user);
-    const IsAdmin = true
+    const [isAdmin] = useAdmin()
+    const [isTeacher] = useTeacher()
     return (
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -22,7 +25,7 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-72 h-full bg-slate-100 text-base-content text-[17px]">
             {/* Sidebar content here */}
-            {/* <div className="text-center">
+            <div className="text-center">
               <img
                 className="w-52 h-52 rounded-full"
                 src={user.photoURL}
@@ -30,15 +33,29 @@ const Dashboard = () => {
               />
               <p className="font-medium text-[17px] my-3">{user.displayName}</p>
               <p className="font-medium text-[17px] ">{user.email}</p>
-            </div> */}
+            </div>
             <div className="divider"></div>
-            {IsAdmin ? (
+            {isAdmin && (
               <>
                 <li className="mt-10">
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink to="/">Admin Home</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/allUsers">All Users</NavLink>
+                </li>
+              </>
+            )}
+            {isTeacher && (
+              <>
+                <li className="mt-10">
+                  <NavLink to="/">Teacher Home</NavLink>
+                </li>
+              </>
+            )}
+            {!isAdmin && !isTeacher ? (
+              <>
+                <li className="mt-10">
+                  <NavLink to="/">Student Home</NavLink>
                 </li>
               </>
             ) : (

@@ -1,48 +1,62 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const { data: users = [], isLoading, refetch } = useQuery({
+  const [axiosSecure] = useAxiosSecure();
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
-    queryFn: () =>
-      fetch("http://localhost:5000/users").then((res) => res.json()),
+    queryFn: async() => {
+      const res = await axiosSecure.get("/users")
+      return res.data
+    }
+      
+      
   });
 
-  if (isLoading) return "Loading...";
+  // if (isLoading) return "Loading...";
   const makeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`,{
-      method: "PATCH"
-    }).then(res => res.json()).then(data =>{
-      console.log(data);
-      if(data.modifiedCount){
-        refetch()
-       Swal.fire({
-         position: "top-end",
-         icon: "success",
-         title: `${user?.name} is admin now!`,
-         showConfirmButton: false,
-         timer: 1500,
-       });
-      }
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
     })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user?.name} is admin now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   const makeTeacher = (user) => {
-    fetch(`http://localhost:5000/users/teacher/${user._id}`,{
-      method: "PATCH"
-    }).then(res => res.json()).then(data =>{
-      console.log(data);
-      if(data.modifiedCount){
-        refetch()
-       Swal.fire({
-         position: "top-end",
-         icon: "success",
-         title: `${user?.name} is teacher now!`,
-         showConfirmButton: false,
-         timer: 1500,
-       });
-      }
+    fetch(`http://localhost:5000/users/teacher/${user._id}`, {
+      method: "PATCH",
     })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user?.name} is teacher now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div>
