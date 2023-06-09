@@ -19,7 +19,7 @@ const Dashboard = () => {
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden absolute top-0 right-0"
           >
-            Open drawer 
+            Open drawer
           </label>
         </div>
         <div className="drawer-side">
@@ -29,7 +29,7 @@ const Dashboard = () => {
             <div className="text-center">
               <img
                 className="w-52 h-52 rounded-full"
-                src={user.photoURL} 
+                src={user.photoURL}
                 alt=""
               />
               <p className="font-medium text-[17px] my-3">{user.displayName}</p>
@@ -45,7 +45,9 @@ const Dashboard = () => {
                   <NavLink to="/dashboard/allUsers">Manage Users</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/manageClasses">Manage classes</NavLink>
+                  <NavLink to="/dashboard/manageClasses">
+                    Manage classes
+                  </NavLink>
                 </li>
               </>
             )}
@@ -62,7 +64,15 @@ const Dashboard = () => {
             {!isAdmin && !isTeacher ? (
               <>
                 <li className="mt-10">
-                  <NavLink to="/">Student Home</NavLink>
+                  <NavLink to="/dashboard/studentHome">Student Home</NavLink>
+                </li>
+                <li className="">
+                  <NavLink to="/dashboard/selectedClass">
+                    Selected class
+                  </NavLink>
+                </li>
+                <li className="">
+                  <NavLink to="/dashboard/enrolledClass">Enrolled class</NavLink>
                 </li>
               </>
             ) : (

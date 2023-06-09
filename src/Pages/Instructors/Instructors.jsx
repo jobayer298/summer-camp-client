@@ -1,23 +1,25 @@
 import React from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Container from '../../Components/Container';
+import Loader from '../../Components/Loader';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Instructors = () => {
-     const [axiosSecure] = useAxiosSecure();
+  const [axiosSecure] = useAxiosSecure()
      const {
-       data: AllTeachers = [],
+       data: teachers = [],
        isLoading,
        refetch,
      } = useQuery({
-       queryKey: ["users"],
+       queryKey: ["instructors"],
        queryFn: async () => {
-         const res = await axiosSecure.get("/users");
+         const res = await axiosSecure.get("/instructors");
          return res.data;
        },
      });
-     const teachers = AllTeachers.filter(t => t.role === 'teacher')
-     console.log(teachers);
+     if(isLoading){
+      return <Loader></Loader>
+     }
     return (
       <div>
         <Container>

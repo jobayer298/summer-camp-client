@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Container from "../../Components/Container";
+import Loader from "../../Components/Loader";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AllClasses = () => {
   const [axiosSecure] = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     data: AllClasses = [],
     isLoading,
@@ -17,7 +25,55 @@ const AllClasses = () => {
     },
   });
   const classes = AllClasses.filter((c) => c.status === "approved");
-  console.log(classes);
+  const handleSelect = (data) => {
+    if (user && user.email) {
+      const classData = {
+        className: data.className,
+        image: data.image,
+        instructorName: data.instructorName,
+        seat: data.seat,
+        price: data.price,
+        totalEnrolled: data.totalEnrolled,
+      };
+      fetch("http://localhost:5000/selectedClasses", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(classData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Class selected successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please login",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
       <Container>
@@ -60,7 +116,14 @@ const AllClasses = () => {
                   <td>{c.instructorName}</td>
                   <td>{c.seat}</td>
                   <td>${c.price}</td>
-                  <td><button className="btn btn-xs btn-warning">Select</button></td>
+                  <td>
+                    <button
+                      onClick={() => handleSelect(c)}
+                      className="btn btn-xs btn-warning"
+                    >
+                      Select
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

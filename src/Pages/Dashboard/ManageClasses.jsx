@@ -2,6 +2,7 @@ import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import Loader from '../../Components/Loader';
 
 const ManageClasses = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -16,9 +17,9 @@ const ManageClasses = () => {
         return res.data;
       },
     });
-    // if(isLoading){
-    //     return <p>loading.....</p>
-    // }
+    if(isLoading){
+        return <Loader></Loader>
+    }
 
     const makeApproved = (id) =>{
         fetch(`http://localhost:5000/users/class/${id}`, {
