@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Container from "../../Components/Container";
@@ -6,8 +6,11 @@ import Loader from "../../Components/Loader";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+// import useAdmin from "../../hooks/useAdmin";
 
 const AllClasses = () => {
+  // const [isAdmin] = useAdmin();
+  // const [disable, setDisable] = useState(isAdmin)
   const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
