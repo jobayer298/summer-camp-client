@@ -2,12 +2,36 @@ import Loader from "../../Components/Loader";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import Swal from "sweetalert2";
 
 const MySelectedClass = () => {
-  const [cart, isLoading] = useCart();
-  // console.log(cart);
-  const total = cart.reduce((acc, curr) => acc + curr.price, 0);
-  const totalPrice = parseFloat(total);
+  const [cart, isLoading, refetch] = useCart();
+
+  const handleDelete = (id) =>{
+     Swal.fire({
+       title: "Are you sure?",
+       text: "You won't be able to revert this!",
+       icon: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#3085d6",
+       cancelButtonColor: "#d33",
+       confirmButtonText: "Yes, delete it!",
+     }).then((result) => {
+       if (result.isConfirmed) {
+         fetch(`http://localhost:5000/selectedClasses/${id}`, {
+           method: "DELETE",
+         })
+           .then((res) => res.json())
+           .then((data) => {
+             refetch();
+             if (data.deletedCount > 0) {
+               Swal.fire("Deleted!", "Your file has been deleted.", "success");
+             }
+           });
+       }
+     });
+  }
+
   if (isLoading) {
     return <Loader></Loader>;
   }
@@ -18,9 +42,6 @@ const MySelectedClass = () => {
           Selected <span className="text-[#e2554a]">Classes</span>
         </h2>
         <div>
-          <p className="text-2xl font-medium">
-            Total Cost: ${totalPrice.toFixed(2)}
-          </p>
           {/* <Link to="/dashboard/payment">
             <button className="btn btn-sm btn-warning my-3">Pay</button>
           </Link> */}
@@ -65,7 +86,10 @@ const MySelectedClass = () => {
                 <td>${c.price}</td>
 
                 <td>
-                  <button className="btn btn-sm bg-white text-red-600">
+                  <button
+                    onClick={() => handleDelete(c._id)}
+                    className="btn btn-sm bg-white text-red-600"
+                  >
                     <FaTrash />
                   </button>
                 </td>

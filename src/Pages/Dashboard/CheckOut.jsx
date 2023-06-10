@@ -82,7 +82,7 @@ const CheckOut = ({  cartData }) => {
         seat,
         totalEnrolled,
       };
-      axiosSecure.post("/payment", payment).then((res) => {
+      axiosSecure("/payment", payment).then((res) => {
         console.log(res.data);
         if (res.data.result.insertedId) {
           Swal.fire({
