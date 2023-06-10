@@ -70,7 +70,8 @@ const CheckOut = ({  cartData }) => {
       setTransactionID(paymentIntent.id);
 
       const payment = {
-        email: user?.email,
+        userEmail: user?.email,
+        userName: user?.displayName,
         transactionID: paymentIntent.id,
         email,
         classID,
@@ -82,7 +83,7 @@ const CheckOut = ({  cartData }) => {
         seat,
         totalEnrolled,
       };
-      axiosSecure("/payment", payment).then((res) => {
+      axiosSecure.post("/payment", payment).then((res) => {
         console.log(res.data);
         if (res.data.result.insertedId) {
           Swal.fire({
