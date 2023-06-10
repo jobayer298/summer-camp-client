@@ -31,6 +31,8 @@ const AllClasses = () => {
   const handleSelect = (data) => {
     if (user && user.email) {
       const classData = {
+        email: user?.email,
+        classID: data._id, 
         className: data.className,
         image: data.image,
         instructorName: data.instructorName,

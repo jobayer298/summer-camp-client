@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import useTeacher from '../hooks/useTeacher';
+import Hamburger from 'hamburger-react';
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
-    console.log(user);
+    const [isOpen, setOpen] = useState(false);
+    // console.log(user);
     const [isAdmin] = useAdmin()
     const [isTeacher] = useTeacher()
     
@@ -17,9 +19,9 @@ const Dashboard = () => {
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden absolute top-0 right-0"
+            className="text-black drawer-button lg:hidden absolute  top-0 right-0"
           >
-            Open drawer
+            <Hamburger toggled={isOpen} toggle={setOpen} />
           </label>
         </div>
         <div className="drawer-side">
@@ -72,7 +74,9 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="">
-                  <NavLink to="/dashboard/enrolledClass">Enrolled class</NavLink>
+                  <NavLink to="/dashboard/enrolledClass">
+                    Enrolled class
+                  </NavLink>
                 </li>
               </>
             ) : (
