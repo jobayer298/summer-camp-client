@@ -21,7 +21,7 @@ const PopularInstructor = () => {
        return <Loader></Loader>;
      }
     return (
-      <div className='my-10'>
+      <div className=" bg-slate-100 py-16">
         <Container>
           <h2 className="text-center font-medium text-5xl my-6">
             Popular <span className="text-[#e2554a]">Teacher</span>
@@ -30,7 +30,11 @@ const PopularInstructor = () => {
             {teachers.map((teacher) => (
               <div key={teacher._id} className="card  bg-base-100 shadow-xl">
                 <figure className="px-10 pt-10">
-                  <img src={teacher.photo} alt="Shoes" className="rounded-xl" />
+                  <img
+                    src={teacher.photo}
+                    alt="Shoes"
+                    className="rounded-xl  h-[208px] w-full"
+                  />
                 </figure>
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">{teacher.name}</h2>

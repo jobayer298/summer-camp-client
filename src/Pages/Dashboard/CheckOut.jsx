@@ -82,6 +82,7 @@ const CheckOut = ({  cartData }) => {
         price,
         seat,
         totalEnrolled,
+        date: new Date()
       };
       axiosSecure.post("/payment", payment).then((res) => {
         console.log(res.data);

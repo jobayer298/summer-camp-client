@@ -81,7 +81,7 @@ const AllClasses = () => {
     return <Loader />;
   }
   return (
-    <div>
+    <div className="py-10">
       <Container>
         <h2 className="text-center font-medium text-5xl my-6">
           All <span className="text-[#e2554a]">Classes</span>
@@ -124,7 +124,7 @@ const AllClasses = () => {
                   <td>${c.price}</td>
                   <td>
                     <button
-                    disabled={c.seat === 0 || isAdmin || isTeacher}
+                      disabled={c.seat === 0 || isAdmin || isTeacher}
                       onClick={() => handleSelect(c)}
                       className="btn btn-xs btn-warning"
                     >

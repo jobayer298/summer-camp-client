@@ -36,8 +36,10 @@ const History = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Class Name</th>
               <th>Transaction ID</th>
               <th>price</th>
+              <th>date</th>
             </tr>
           </thead>
           <tbody>
@@ -47,8 +49,10 @@ const History = () => {
                 <td>{index + 1}</td>
                 <td>{c.userName}</td>
                 <td>{c.userEmail}</td>
+                <td>{c.className}</td>
                 <td>{c.transactionID}</td>
                 <td>${c.price}</td>
+                <td>${c.date}</td>
               </tr>
             ))}
           </tbody>
