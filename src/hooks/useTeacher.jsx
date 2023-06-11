@@ -8,7 +8,7 @@ const useTeacher = () => {
   const [axiosSecure] = useAxiosSecure();
   const { data: isTeacher, isLoading: isTeacherLoading } = useQuery({
     queryKey: ["isTeacher", user?.email],
-    enabled: !loading,
+    enabled: !loading && !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/teacher/${user?.email}`);
       console.log(res);

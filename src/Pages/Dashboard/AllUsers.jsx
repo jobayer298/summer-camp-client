@@ -79,6 +79,7 @@ const AllUsers = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Role</th>
               <th>Admin Role </th>
               <th>Teacher Role </th>
             </tr>
@@ -90,6 +91,7 @@ const AllUsers = () => {
                 <th>{index + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
+                <td>{user?.role}</td>
                 <td>
                   {user.role === "admin" ? (
                     <button
@@ -108,7 +110,7 @@ const AllUsers = () => {
                       onClick={() => makeAdmin(user._d)}
                       className="btn btn-primary btn-sm"
                     >
-                      Make admin
+                     admin
                     </button>
                   )}
                 </td>
@@ -130,7 +132,7 @@ const AllUsers = () => {
                       onClick={() => makeTeacher(user._id)}
                       className="btn btn-secondary btn-sm"
                     >
-                      Make Teacher
+                      Teacher
                     </button>
                   )}
                 </td>

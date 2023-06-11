@@ -8,8 +8,10 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTeacher from "../../hooks/useTeacher";
 import useAdmin from "../../hooks/useAdmin";
+import useCart from "../../hooks/useCart";
 
 const AllClasses = () => {
+  const [cart] = useCart()
   const [isAdmin] = useAdmin();
   const [isTeacher] = useTeacher()
   const [axiosSecure] = useAxiosSecure();
@@ -124,7 +126,12 @@ const AllClasses = () => {
                   <td>${c.price}</td>
                   <td>
                     <button
-                      disabled={c.seat === 0 || isAdmin || isTeacher}
+                      disabled={
+                        c.seat === 0 ||
+                        isAdmin ||
+                        isTeacher ||
+                        cart.find((item) => item.classID === c._id)
+                      }
                       onClick={() => handleSelect(c)}
                       className="btn btn-xs btn-warning"
                     >
