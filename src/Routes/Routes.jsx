@@ -19,7 +19,7 @@ import Payment from "../Pages/Dashboard/Payment";
 import AdminRoute from "./AdminRoute";
 import TeacherRoute from "./TeacherRoute";
 import History from "../Pages/Dashboard/History";
-
+import FeedBack from "../Pages/Dashboard/FeedBack";
 
 export const router = createBrowserRouter([
   {
@@ -98,8 +98,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "history",
-        element: <History></History>
-      }
+        element: <History></History>,
+      },
+      {
+        path: "feedback/:id",
+        element: (
+          <AdminRoute>
+            <FeedBack></FeedBack>
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);

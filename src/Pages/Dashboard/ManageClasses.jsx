@@ -3,6 +3,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import Loader from '../../Components/Loader';
+import { Link } from 'react-router-dom';
 
 const ManageClasses = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -34,6 +35,25 @@ const ManageClasses = () => {
                 position: "top-end",
                 icon: "success",
                 title: `Class is approved`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+    }
+    const makeDenied = (id) =>{
+        fetch(`http://localhost:5000/users/class/deny/${id}`, {
+          method: "PATCH",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount) {
+              refetch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Class is denied`,
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -86,22 +106,54 @@ const ManageClasses = () => {
                   <td className="grid gap-1">
                     <>
                       {c.status === "approved" ? (
-                        <button className="btn btn-success btn-xs">
+                        <button
+                          disabled={
+                            c.status === "approved" || c.status === "denied"
+                          }
+                          className="btn btn-success btn-xs"
+                        >
                           Approved
                         </button>
                       ) : (
                         <button
+                          disabled={
+                            c.status === "approved" || c.status === "denied"
+                          }
                           onClick={() => makeApproved(c._id)}
                           className="btn btn-warning btn-xs"
                         >
-                          {c.status}
+                          pending
                         </button>
                       )}
                     </>
-                    <button className="btn btn-error btn-xs">Deny</button>
-                    <button className="btn btn-secondary btn-xs">
-                      Feedback
-                    </button>
+                    <>
+                      {c.status === "denied" ? (
+                        <button
+                          disabled={
+                            c.status === "approved" || c.status === "denied"
+                          }
+                          className="btn btn-success btn-xs"
+                        >
+                          Denied
+                        </button>
+                      ) : (
+                        <button
+                          disabled={
+                            c.status === "approved" || c.status === "denied"
+                          }
+                          onClick={() => makeDenied(c._id)}
+                          className="btn btn-error btn-xs"
+                        >
+                          Deny
+                        </button>
+                      )}
+                    </>
+
+                    <Link to={`/dashboard/feedback/${c._id}`}>
+                      <button className="btn btn-secondary btn-xs">
+                        Feedback
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

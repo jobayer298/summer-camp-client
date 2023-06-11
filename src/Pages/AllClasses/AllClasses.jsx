@@ -6,11 +6,12 @@ import Loader from "../../Components/Loader";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
-// import useAdmin from "../../hooks/useAdmin";
+import useTeacher from "../../hooks/useTeacher";
+import useAdmin from "../../hooks/useAdmin";
 
 const AllClasses = () => {
-  // const [isAdmin] = useAdmin();
-  // const [disable, setDisable] = useState(isAdmin)
+  const [isAdmin] = useAdmin();
+  const [isTeacher] = useTeacher()
   const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -123,6 +124,7 @@ const AllClasses = () => {
                   <td>${c.price}</td>
                   <td>
                     <button
+                    disabled={c.seat === 0 || isAdmin || isTeacher}
                       onClick={() => handleSelect(c)}
                       className="btn btn-xs btn-warning"
                     >

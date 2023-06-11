@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const AllUsers = () => {
+  // const {user} = useContext(AuthContext)
   const [axiosSecure] = useAxiosSecure();
   const [isInstructor, setIsInstructor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -90,10 +92,19 @@ const AllUsers = () => {
                 <td>{user?.email}</td>
                 <td>
                   {user.role === "admin" ? (
-                    "admin"
+                    <button
+                      disabled={
+                        user.role === "admin" || user.role === "teacher"
+                      }
+                      className="btn btn-primary btn-sm "
+                    >
+                      admin
+                    </button>
                   ) : (
                     <button
-                      // disabled={isAdmin}
+                      disabled={
+                        user.role === "admin" || user.role === "teacher"
+                      }
                       onClick={() => makeAdmin(user._d)}
                       className="btn btn-primary btn-sm"
                     >
@@ -103,10 +114,19 @@ const AllUsers = () => {
                 </td>
                 <td>
                   {user.role === "teacher" ? (
-                    "teacher"
+                    <button
+                      disabled={
+                        user.role === "admin" || user.role === "teacher"
+                      }
+                      className="btn btn-primary btn-sm "
+                    >
+                      Teacher
+                    </button>
                   ) : (
                     <button
-                      // disabled={isInstructor}
+                      disabled={
+                        user.role === "admin" || user.role === "teacher"
+                      }
                       onClick={() => makeTeacher(user._id)}
                       className="btn btn-secondary btn-sm"
                     >
