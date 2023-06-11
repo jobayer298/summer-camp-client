@@ -7,7 +7,7 @@ const useCart = () => {
   const { user, loading } = useContext(AuthContext);
 //   const token = localStorage.getItem("access-token");
   const [axiosSecure] = useAxiosSecure();
-  const { refetch, data: cart = [], isLoading } = useQuery({
+  const { refetch: cartRefetch, data: cart = [], isLoading } = useQuery({
     queryKey: ["carts", user?.email],
     enabled: !loading && !!localStorage.getItem("access-token"),
     queryFn: async () => {
@@ -17,6 +17,6 @@ const useCart = () => {
     },
   });
 
-  return [cart,isLoading, refetch];
+  return [cart, isLoading, cartRefetch];
 };
 export default useCart;

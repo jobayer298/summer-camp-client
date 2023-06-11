@@ -20,6 +20,7 @@ import AdminRoute from "./AdminRoute";
 import TeacherRoute from "./TeacherRoute";
 import History from "../Pages/Dashboard/History";
 import FeedBack from "../Pages/Dashboard/FeedBack";
+import UpdateClass from "../Pages/Dashboard/UpdateClass";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,14 @@ export const router = createBrowserRouter([
           <AdminRoute>
             <FeedBack></FeedBack>
           </AdminRoute>
+        ),
+      },
+      {
+        path: "updateClass/:id",
+        element: (
+          <TeacherRoute>
+            <UpdateClass></UpdateClass>
+          </TeacherRoute>
         ),
       },
     ],

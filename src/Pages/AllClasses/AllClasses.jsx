@@ -11,7 +11,7 @@ import useAdmin from "../../hooks/useAdmin";
 import useCart from "../../hooks/useCart";
 
 const AllClasses = () => {
-  const [cart] = useCart()
+  const [cart, , cartRefetch] = useCart();
   const [isAdmin] = useAdmin();
   const [isTeacher] = useTeacher()
   const [axiosSecure] = useAxiosSecure();
@@ -54,6 +54,7 @@ const AllClasses = () => {
         .then((data) => {
           console.log(data);
           if (data.insertedId) {
+            cartRefetch()
             refetch();
             Swal.fire({
               position: "top-end",

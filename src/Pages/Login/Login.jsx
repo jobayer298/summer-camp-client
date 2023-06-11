@@ -6,6 +6,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { saveUser } from "../../api/auth";
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.message);
+        toast.error("Password didn't match");
       });
   };
   return (
