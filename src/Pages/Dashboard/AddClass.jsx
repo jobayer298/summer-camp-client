@@ -27,7 +27,8 @@ const AddClass = () => {
         seat,
         price,
         status: "pending",
-        totalEnrolled: 0
+        totalEnrolled: 0,
+        feedback: null
       };
       axiosSecure.post("/classes", classData).then(data =>{
         console.log(data.data)
