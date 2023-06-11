@@ -8,7 +8,7 @@ const FeedBack = () => {
     event.preventDefault();
     const feedback = event.target.feedback.value;
     console.log(feedback);
-    fetch(`http://localhost:5000/feedback/${id}`, {
+    fetch(`https://summer-camp-school-server-eosin.vercel.app/feedback/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

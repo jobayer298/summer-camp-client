@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
    const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
      setUser(loggedUser);
      if(loggedUser){
-      axios.post("http://localhost:5000/jwt",{ email: loggedUser?.email})
+      axios.post("https://summer-camp-school-server-eosin.vercel.app/jwt",{ email: loggedUser?.email})
       .then(data =>{
         // console.log(data.data.token);
         localStorage.setItem("access-token", data.data.token)

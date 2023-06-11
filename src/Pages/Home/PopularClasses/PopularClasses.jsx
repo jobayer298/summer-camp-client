@@ -43,7 +43,7 @@ const PopularClasses = () => {
         price: data.price,
         totalEnrolled: data.totalEnrolled,
       };
-      fetch("http://localhost:5000/selectedClasses", {
+      fetch("https://summer-camp-school-server-eosin.vercel.app/selectedClasses", {
         method: "POST",
         headers: {
           "content-type": "application/json",

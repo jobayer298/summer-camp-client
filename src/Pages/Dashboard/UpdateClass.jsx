@@ -24,7 +24,7 @@ const UpdateClass = () => {
       const classData = {className, totalStudent, totalSeat}
       console.log(classData);
         
-      fetch(`http://localhost:5000/updateClass/${id}`, {
+      fetch(`https://summer-camp-school-server-eosin.vercel.app/updateClass/${id}`, {
         method: "patch",
         headers: {
           "Content-type": "application/json",

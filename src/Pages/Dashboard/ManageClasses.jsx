@@ -23,7 +23,7 @@ const ManageClasses = () => {
     }
 
     const makeApproved = (id) =>{
-        fetch(`http://localhost:5000/users/class/${id}`, {
+        fetch(`https://summer-camp-school-server-eosin.vercel.app/users/class/${id}`, {
           method: "PATCH",
         })
           .then((res) => res.json())
@@ -42,7 +42,7 @@ const ManageClasses = () => {
           });
     }
     const makeDenied = (id) =>{
-        fetch(`http://localhost:5000/users/class/deny/${id}`, {
+        fetch(`https://summer-camp-school-server-eosin.vercel.app/users/class/deny/${id}`, {
           method: "PATCH",
         })
           .then((res) => res.json())
