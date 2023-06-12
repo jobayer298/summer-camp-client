@@ -6,13 +6,17 @@ const Footer = () => {
     background: "indigo",
     color: "white",
     padding: "6px",
+    height: "50px",
+    width: "50px",
+    borderRadius: "100%",
+    fontWeight: "bold",
     display: "grid",
     placeItems: "center",
   };
   return (
-    <div className="bg-indigo-200 text-black font-medium">
+    <div className="bg-black text-white font-medium">
       <ScrollToTop smooth style={mystyle} color="white" />
-      <footer className="footer p-10 container mx-auto  text-base-content">
+      <footer className="footer p-10 container mx-auto   text-white ">
         <div>
           <span className="footer-title">Services</span>
           <a className="link link-hover">Branding</a>

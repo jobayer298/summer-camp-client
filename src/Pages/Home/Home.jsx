@@ -5,6 +5,7 @@ import PopularInstructor from './PopularInstructor/PopularInstructor';
 import PopularClasses from './PopularClasses/PopularClasses';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import About from './About/About';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <div className="relative">
         <Banner></Banner>
         <CountDown></CountDown>
+        <About></About>
         <PopularClasses></PopularClasses>
         <PopularInstructor></PopularInstructor>
       </div>

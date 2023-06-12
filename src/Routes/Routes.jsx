@@ -22,6 +22,9 @@ import History from "../Pages/Dashboard/History";
 import FeedBack from "../Pages/Dashboard/FeedBack";
 import UpdateClass from "../Pages/Dashboard/UpdateClass";
 import ErroPage from "../Pages/Error/ErroPage";
+import AdminHome from "../Pages/Dashboard/AdminHome";
+import TeacherHome from "../Pages/Dashboard/TeacherHome";
+import StudentHome from "../Pages/Dashboard/StudentHome";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +71,27 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "teacherHome",
+        element: (
+          <TeacherRoute>
+            <TeacherHome></TeacherHome>
+          </TeacherRoute>
+        ),
+      },
+      {
+        path: "studentHome",
+        element: <StudentHome></StudentHome>,
+      },
+
       {
         path: "addClass",
         element: (

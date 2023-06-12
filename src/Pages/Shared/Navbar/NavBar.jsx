@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import logo from '../../../assets/logo.webp'
+import useAdmin from '../../../hooks/useAdmin';
+import useTeacher from '../../../hooks/useTeacher';
 
 const NavBar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [isAdmin] =useAdmin()
+  const [isTeacher] = useTeacher()
   const [theme, setThem] = useState(localStorage.getItem("theme")? localStorage.getItem("theme"): "light")
   useEffect(()=>{
     localStorage.setItem("theme", theme)
@@ -37,10 +41,19 @@ const NavBar = () => {
         <li>
           <Link to="/classes">Classes</Link>
         </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        
+        {isAdmin ? (
+          <li>
+            <Link to="/dashboard/adminHome">Dashboard</Link>
+          </li>
+        ) : isTeacher ? (
+          <li>
+            <Link to="/dashboard/teacherHome">Dashboard</Link>
+          </li>
+        ) : (
+          <li>
+            <Link to="/dashboard/studentHome">Dashboard</Link>
+          </li>
+        )}
       </>
     );
     return (
