@@ -4,6 +4,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import useTeacher from '../hooks/useTeacher';
 import Hamburger from 'hamburger-react';
+import { FaHistory, FaHome, FaSun, FaUser,  } from "react-icons/fa";
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
@@ -41,14 +42,19 @@ const Dashboard = () => {
             {isAdmin && (
               <>
                 <li className="mt-10">
-                  <NavLink to="/"> Home</NavLink>
+                  <NavLink to="/">
+                    <FaHome /> Home
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/allUsers">Manage Users</NavLink>
+                  <NavLink to="/dashboard/allUsers">
+                    <FaUser />
+                    Manage Users
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/manageClasses">
-                    Manage classes
+                    <FaSun /> Manage classes
                   </NavLink>
                 </li>
               </>
@@ -56,7 +62,9 @@ const Dashboard = () => {
             {isTeacher && (
               <>
                 <li className="">
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink to="/">
+                    <FaHome /> Home
+                  </NavLink>
                 </li>
                 <li className="">
                   <NavLink to="/dashboard/addClass">Add a class</NavLink>
@@ -69,7 +77,9 @@ const Dashboard = () => {
             {!isAdmin && !isTeacher ? (
               <>
                 <li className="mt-10">
-                  <NavLink to="/"> Home</NavLink>
+                  <NavLink to="/">
+                    <FaHome /> Home
+                  </NavLink>
                 </li>
                 <li className="">
                   <NavLink to="/dashboard/selectedClass">
@@ -82,9 +92,7 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="">
-                  <NavLink to="/dashboard/history">
-                    Payment history
-                  </NavLink>
+                  <NavLink to="/dashboard/history"><FaHistory /> Payment history</NavLink>
                 </li>
               </>
             ) : (

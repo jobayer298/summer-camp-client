@@ -2,6 +2,7 @@ import { Navigate, useLocation } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import useTeacher from "../hooks/useTeacher";
+import Loader from "../Components/Loader";
 
 const TeacherRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -9,7 +10,7 @@ const TeacherRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading || isTeacherLoading) {
-    return <progress className="progress w-56"></progress>;
+    return <Loader />;
   }
 
   if (user && isTeacher) {

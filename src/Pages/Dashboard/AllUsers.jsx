@@ -23,7 +23,7 @@ const AllUsers = () => {
       
   });
 
-  if (isLoading) return "Loading...";
+  // if (isLoading) return "Loading...";
   const makeAdmin = (id) => {
     fetch(`https://summer-camp-school-server-eosin.vercel.app/users/admin/${id}`, {
       method: "PATCH",

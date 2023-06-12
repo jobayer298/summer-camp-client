@@ -104,7 +104,7 @@ const NavBar = () => {
                     Login
                   </button>
                 </Link>
-              </>
+              </> 
             )}
             <label className="swap swap-rotate ml-3">
               {/* this hidden checkbox controls the state */}

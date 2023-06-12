@@ -21,11 +21,13 @@ import TeacherRoute from "./TeacherRoute";
 import History from "../Pages/Dashboard/History";
 import FeedBack from "../Pages/Dashboard/FeedBack";
 import UpdateClass from "../Pages/Dashboard/UpdateClass";
+import ErroPage from "../Pages/Error/ErroPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErroPage />,
     children: [
       {
         path: "/",
@@ -56,6 +58,7 @@ export const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivateRoute>
     ),
+    errorElement: <ErroPage />,
     children: [
       {
         path: "allUsers",
