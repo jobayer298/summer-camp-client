@@ -9,6 +9,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Container from "../../../Components/Container";
 import Loader from "../../../Components/Loader";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 
 const PopularClasses = () => {
@@ -30,69 +31,61 @@ const PopularClasses = () => {
       return res.data;
     },
   });
-  const classes = AllClasses.filter((c) => c.status === "approved");
-  const handleSelect = (data) => {
-    if (user && user.email) {
-      const classData = {
-        email: user?.email,
-        classID: data._id,
-        className: data.className,
-        image: data.image,
-        instructorName: data.instructorName,
-        seat: data.seat,
-        price: data.price,
-        totalEnrolled: data.totalEnrolled,
-      };
-      fetch("https://summer-camp-school-server-eosin.vercel.app/selectedClasses", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(classData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.insertedId) {
-            refetch();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Class selected successfully!",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-    } else {
-      Swal.fire({
-        title: "Please login",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Login",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/login", { state: { from: location } });
-        }
-      });
-    }
+  const MotionContainer = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.9,
+        staggerChildren: 0.2,
+      },
+    },
   };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+   const x = useMotionValue(0);
+   const y = useMotionValue(0);
+   const rotateX = useTransform(y, [-100, 100], [30, -30]);
+   const rotateY = useTransform(x, [-100, 100], [-30, 30]);
+
+  const classes = AllClasses.filter((c) => c.status === "approved");
   if (isLoading) {
     return <Loader />;
   }
   return (
-    <div className="font-medium">
+    <div className="font-medium my-9">
       <Container>
         <h2 className="text-center font-medium text-5xl my-6">
           Popular <span className="text-[#e2554a]">Classes</span>
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <motion.div
+          style={{ perspective: 2000 }}
+          variants={MotionContainer}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 MotionContainer"
+        >
           {classes.map((cls) => (
-            <div key={cls._id} className="card  bg-base-100 shadow-xl">
+            <motion.div
+              style={{ x, y, rotateX, rotateY, z: 100 }}
+              drag
+              dragElastic={0.18}
+              dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+              whileTap={{ cursor: "grabbing" }}
+              variants={item}
+              key={cls._id}
+              className="card  bg-base-100 shadow-xl item cursor-grab"
+            >
               <figure className="px-10 pt-10">
                 <img
+                  style={{ x, y, rotateX, rotateY, z: 100000 }}
                   src={cls.image}
                   alt="Shoes"
                   className="rounded-xl  h-[208px] w-full"
@@ -104,9 +97,9 @@ const PopularClasses = () => {
                 <p>Price: ${cls.price}</p>
                 <p>Total Student: {cls.totalEnrolled}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </div>
   );
