@@ -62,7 +62,7 @@ const PopularClasses = () => {
   return (
     <div className="font-medium my-9">
       <Container>
-        <h2 className="text-center font-medium text-5xl my-6">
+        <h2 className="text-center font-medium text-5xl my-10">
           Popular <span className="text-[#e2554a]">Classes</span>
         </h2>
         <motion.div
@@ -81,7 +81,7 @@ const PopularClasses = () => {
               whileTap={{ cursor: "grabbing" }}
               variants={item}
               key={cls._id}
-              className="card  bg-base-100 shadow-xl item cursor-grab"
+              className={` ${cls.seat === 0 ? "bg-red-500" : ""}  card  bg-base-100 shadow-xl item cursor-grab`}
             >
               <figure className="px-10 pt-10">
                 <img

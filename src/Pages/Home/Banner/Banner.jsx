@@ -39,7 +39,7 @@ const Banner = () => {
               <p className="text-yellow-600 font-bold text-4xl first-text mb-4">
                 Children Summer Camp
               </p>
-              <h1 className="font-extrabold text-8xl text-white second-text">
+              <h1 className="font-extrabold text-6xl md:text-8xl text-white second-text">
                 A chance to provide <br /> <span>{text}</span>{" "}
                 <Cursor cursorColor="red" />
               </h1>
@@ -59,7 +59,7 @@ const Banner = () => {
               <p className="text-yellow-600 font-bold text-4xl first-text mb-4">
                 Children Summer Camp
               </p>
-              <h1 className="font-extrabold text-8xl text-white second-text">
+              <h1 className="font-extrabold text-6xl md:text-8xl  text-white second-text">
                 A chance to provide <br /> <span>{text}</span>{" "}
                 <Cursor cursorColor="red" />
               </h1>

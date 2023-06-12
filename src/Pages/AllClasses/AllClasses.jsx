@@ -105,7 +105,7 @@ const AllClasses = () => {
             <tbody>
               {/* row 1 */}
               {classes.map((c, index) => (
-                <tr key={c._id}>
+                <tr className={c.seat === 0? "bg-red-500": ""} key={c._id}>
                   <td>{index + 1}</td>
                   <td>
                     <div className="flex items-center space-x-3">
