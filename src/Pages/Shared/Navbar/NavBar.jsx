@@ -47,11 +47,11 @@ const NavBar = () => {
           </li>
         ) : isTeacher ? (
           <li>
-            <Link to="/dashboard/teacherHome">Dashboard</Link>
+            <Link to="/dashboard/addClass">Dashboard</Link>
           </li>
         ) : (
           <li>
-            <Link to="/dashboard/studentHome">Dashboard</Link>
+            <Link to="/dashboard/selectedClass">Dashboard</Link>
           </li>
         )}
       </>

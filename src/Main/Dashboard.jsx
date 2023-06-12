@@ -62,12 +62,6 @@ const Dashboard = () => {
             {isTeacher && (
               <>
                 <li className="">
-                  <NavLink to="/dashboard/teacherHome">
-                    <FaHome />
-                    Teacher Home
-                  </NavLink>
-                </li>
-                <li className="">
                   <NavLink to="/dashboard/addClass">Add a class</NavLink>
                 </li>
                 <li className="">
@@ -77,12 +71,6 @@ const Dashboard = () => {
             )}
             {!isAdmin && !isTeacher ? (
               <>
-                <li className="mt-10">
-                  <NavLink to="/dashboard/studentHome">
-                    <FaHome />
-                    Student Home
-                  </NavLink>
-                </li>
                 <li className="">
                   <NavLink to="/dashboard/selectedClass">
                     Selected class

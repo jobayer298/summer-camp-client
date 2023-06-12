@@ -49,7 +49,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.message);
-        toast.error("Password didn't match");
+        toast.error(err.message);
       });
   };
   return (
