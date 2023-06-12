@@ -3,7 +3,6 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../Components/Loader';
 import Container from '../../../Components/Container';
-
 const PopularInstructor = () => {
      const [axiosSecure] = useAxiosSecure();
      const {
@@ -28,7 +27,11 @@ const PopularInstructor = () => {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {teachers.map((teacher) => (
-              <div key={teacher._id} className="card  bg-base-100 shadow-xl">
+              <div
+                data-aos="flip-left"
+                key={teacher._id}
+                className="card  bg-base-100 shadow-xl"
+              >
                 <figure className="px-10 pt-10">
                   <img
                     src={teacher.photo}

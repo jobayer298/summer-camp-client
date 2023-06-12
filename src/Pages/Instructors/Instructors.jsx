@@ -21,14 +21,18 @@ const Instructors = () => {
       return <Loader></Loader>
      }
     return (
-      <div className='py-10'>
+      <div className="py-10">
         <Container>
           <h2 className="text-center font-medium text-5xl my-6">
             All <span className="text-[#e2554a]">Teacher</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {teachers.map((teacher) => (
-              <div key={teacher._id} className="card  bg-base-100 shadow-xl">
+              <div
+                data-aos="flip-left"
+                key={teacher._id}
+                className="card  bg-base-100 shadow-xl"
+              >
                 <figure className="px-10 pt-10">
                   <img
                     src={teacher.photo}

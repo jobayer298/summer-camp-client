@@ -44,7 +44,7 @@ const NavBar = () => {
       </>
     );
     return (
-      <nav className="bg-base-100 shadow-sm ">
+      <nav className="bg-base-100 shadow-sm  ">
         <div className="navbar  container mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
@@ -104,11 +104,15 @@ const NavBar = () => {
                     Login
                   </button>
                 </Link>
-              </> 
+              </>
             )}
             <label className="swap swap-rotate ml-3">
               {/* this hidden checkbox controls the state */}
-              <input checked={theme === "light" ? false: true} onClick={handleToggle} type="checkbox" />
+              <input
+                checked={theme === "light" ? false : true}
+                onChange={handleToggle}
+                type="checkbox"
+              />
 
               {/* sun icon */}
               <svg

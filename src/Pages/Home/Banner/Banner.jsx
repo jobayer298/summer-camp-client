@@ -18,7 +18,7 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 const Banner = () => {
   const [text] = useTypewriter({
     words: ["formative", "experience"],
-    loop: 3,
+    loop: 0,
     onLoopDone: () => console.log(`loop completed after 3 runs.`),
   });
   return (
