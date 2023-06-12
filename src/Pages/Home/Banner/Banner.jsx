@@ -13,8 +13,14 @@ import img1 from "../../../assets/Banner/1.jpg";
 import img2 from "../../../assets/Banner/2.jpg";
 import "./Banner.css";
 import { Link } from "react-router-dom";
+import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 const Banner = () => {
+  const [text] = useTypewriter({
+    words: ["formative", "experience"],
+    loop: 3,
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  });
   return (
     <>
       <Swiper
@@ -34,7 +40,8 @@ const Banner = () => {
                 Children Summer Camp
               </p>
               <h1 className="font-extrabold text-8xl text-white second-text">
-                A chance to provide <br /> formative experience
+                A chance to provide <br /> <span>{text}</span>{" "}
+                <Cursor cursorColor="red" />
               </h1>
               <Link to="/register">
                 <button className=" mt-3 primary-btn">
@@ -53,7 +60,8 @@ const Banner = () => {
                 Children Summer Camp
               </p>
               <h1 className="font-extrabold text-8xl text-white second-text">
-                A chance to provide <br /> formative experience
+                A chance to provide <br /> <span>{text}</span>{" "}
+                <Cursor cursorColor="red" />
               </h1>
               <Link to="/register">
                 <button className="mt-3 primary-btn">
