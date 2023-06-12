@@ -62,7 +62,7 @@ const PopularClasses = () => {
   return (
     <div className="font-medium my-9">
       <Container>
-        <h2 className="text-center font-medium text-5xl my-10">
+        <h2 className="text-center font-medium text-5xl mb-28">
           Popular <span className="text-[#e2554a]">Classes</span>
         </h2>
         <motion.div
