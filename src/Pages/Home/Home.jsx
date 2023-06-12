@@ -14,12 +14,12 @@ const Home = () => {
       AOS.init();
     }, []);
     return (
-        <div>
-            <Banner></Banner>
-            <CountDown></CountDown>
-            <PopularClasses></PopularClasses>
-            <PopularInstructor></PopularInstructor>
-        </div>
+      <div className="relative">
+        <Banner></Banner>
+        <CountDown></CountDown>
+        <PopularClasses></PopularClasses>
+        <PopularInstructor></PopularInstructor>
+      </div>
     );
 };
 

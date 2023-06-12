@@ -13,3 +13,6 @@
 .drawer-side a{
     background: transparent;
 }
+*{
+    scroll-behavior: smooth;
+}
